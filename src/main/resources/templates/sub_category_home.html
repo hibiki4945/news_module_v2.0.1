@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
+<title>ホームページ</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="bg-slate-400">
+
+	<div align="center">
+		<header class="bg-gray-200 pb-24">
+		    <span class="text-4xl font-bold absolute top-1 left-1">ニュースシステム</span>
+			<div class="absolute top-1 right-1">
+				<button class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative">
+			    	<a class="" href="/client_home/0">クライアント側へ</a>
+			    </button>
+		    	<button class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative">
+			    	<i class="fa-solid fa-house">
+			    		<a class="absolute w-full h-full left-0 top-0" href="/sub_category_home/0"></a>
+			    	</i>
+		    	</button>
+		    	<br/>
+				<button class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative">
+			    	<a class="" href="/home/0">ニュース</a>
+			    </button>
+				<button class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative">
+			    	<a class="" href="/category_home/0">カテゴリー</a>
+			    </button>
+	    	</div>
+		</header>
+	    <h1 class="text-3xl font-bold underline">
+	      サブカテゴリー:
+	    </h1>
+			
+		    
+         	<div class="justify-around">
+	         	<div class="flex">
+	         	
+	    		<form action="#" th:action="@{/sub_category_home_search_category}" method="post" th:object="${subCategory}">
+					<div class="shadow-inner shadow-black m-1">
+						<div class="w-32 h-8 text-center bg-lime-600 m-2 mb-0 border border-2 border-lime-900 rounded-t-lg">
+							<label class="text-white">カテゴリー:</label>
+						</div>
+						<div class="w-32 h-8 text-center mt-0 border border-2 border-lime-900 rounded-b-lg relative">
+							<select th:field="*{category}">
+								<option th:each="l : ${categoryList}" th:value="${l}" th:text="${l}" />
+							</select>
+						</div>
+					</div>
+					<button type="submit" class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative">検索</button>
+					
+				</form>
+				
+					
+					
+	         	</div>
+         	</div>
+         	
+			<button class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative">
+		    	<a class="w-full h-full" href="/sub_category_home_all_check">全てを選択</a>
+		    </button>
+		    
+			<button class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative">
+		    	<a class="w-full h-full" href="/sub_category_add">サブカテゴリー追加</a>
+		    </button>
+			<button class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative">
+		    	<a class="w-full h-full" href="/sub_category_edit">サブカテゴリー更新</a>
+		    </button>
+			<button class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative">
+		    	<a class="w-full h-full" href="/sub_category_delete">サブカテゴリー削除</a>
+		    </button>
+		    <div>
+			    <span>選択 : 検索結果をチェックして、選択完了ボタンを押す。</span><br/>
+			    <span>更新機能は一つの検索結果を選択ください。</span><br/>
+			    <span>削除機能は複数の検索結果を選択してもらい。</span><br/>
+			    <span>詳細機能は一つの検索結果を選択ください。</span><br/>
+		    </div>
+		    <form action="#" th:action="@{/sub_category_home}" method="post" th:object="${checkedRes}">
+					
+				<button type="submit" class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative">選択完了</button>
+					<!-- <button class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative"><a th:href="/home_delete" th:text="刪除"></a></button> --> 
+					<!-- <button class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative"><a th:href="/home_zoom" th:text="詳細內容"></a></button> --> 
+					
+					<button class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative">
+				    	<a class="w-full h-full" href="/sub_category_home_set_pageSize_10">各ページ10本</a>
+				    </button>
+					<button class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative">
+				    	<a class="w-full h-full" href="/sub_category_home_set_pageSize_50">各ページ50本</a>
+				    </button>
+					<button class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative">
+				    	<a class="w-full h-full" href="/sub_category_home_set_pageSize_100">各ページ100本</a>
+				    </button>
+					<button class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative">
+				    	<a class="w-full h-full" href="/sub_category_home_set_asc">昇順</a>
+				    </button>
+					<button class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative">
+				    	<a class="w-full h-full" href="/sub_category_home_set_desc">降順</a>
+				    </button>
+				    
+					<div class="flex justify-center">
+						<div class="mt-8">
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 1" th:field="${checkedRes.checked1}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 2" th:field="${checkedRes.checked2}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 3" th:field="${checkedRes.checked3}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 4" th:field="${checkedRes.checked4}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 5" th:field="${checkedRes.checked5}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 6" th:field="${checkedRes.checked6}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 7" th:field="${checkedRes.checked7}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 8" th:field="${checkedRes.checked8}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 9" th:field="${checkedRes.checked9}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 10" th:field="${checkedRes.checked10}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 11" th:field="${checkedRes.checked11}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 12" th:field="${checkedRes.checked12}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 13" th:field="${checkedRes.checked13}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 14" th:field="${checkedRes.checked14}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 15" th:field="${checkedRes.checked15}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 16" th:field="${checkedRes.checked16}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 17" th:field="${checkedRes.checked17}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 18" th:field="${checkedRes.checked18}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 19" th:field="${checkedRes.checked19}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 20" th:field="${checkedRes.checked20}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 21" th:field="${checkedRes.checked21}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 22" th:field="${checkedRes.checked22}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 23" th:field="${checkedRes.checked23}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 24" th:field="${checkedRes.checked24}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 25" th:field="${checkedRes.checked25}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 26" th:field="${checkedRes.checked26}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 27" th:field="${checkedRes.checked27}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 28" th:field="${checkedRes.checked28}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 29" th:field="${checkedRes.checked29}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 30" th:field="${checkedRes.checked30}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 31" th:field="${checkedRes.checked31}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 32" th:field="${checkedRes.checked32}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 33" th:field="${checkedRes.checked33}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 34" th:field="${checkedRes.checked34}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 35" th:field="${checkedRes.checked35}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 36" th:field="${checkedRes.checked36}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 37" th:field="${checkedRes.checked37}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 38" th:field="${checkedRes.checked38}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 39" th:field="${checkedRes.checked39}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 40" th:field="${checkedRes.checked40}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 41" th:field="${checkedRes.checked41}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 42" th:field="${checkedRes.checked42}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 43" th:field="${checkedRes.checked43}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 44" th:field="${checkedRes.checked44}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 45" th:field="${checkedRes.checked45}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 46" th:field="${checkedRes.checked46}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 47" th:field="${checkedRes.checked47}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 48" th:field="${checkedRes.checked48}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 49" th:field="${checkedRes.checked49}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 50" th:field="${checkedRes.checked50}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 51" th:field="${checkedRes.checked51}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 52" th:field="${checkedRes.checked52}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 53" th:field="${checkedRes.checked53}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 54" th:field="${checkedRes.checked54}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 55" th:field="${checkedRes.checked55}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 56" th:field="${checkedRes.checked56}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 57" th:field="${checkedRes.checked57}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 58" th:field="${checkedRes.checked58}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 59" th:field="${checkedRes.checked59}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 60" th:field="${checkedRes.checked60}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 61" th:field="${checkedRes.checked61}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 62" th:field="${checkedRes.checked62}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 63" th:field="${checkedRes.checked63}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 64" th:field="${checkedRes.checked64}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 65" th:field="${checkedRes.checked65}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 66" th:field="${checkedRes.checked66}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 67" th:field="${checkedRes.checked67}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 68" th:field="${checkedRes.checked68}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 69" th:field="${checkedRes.checked69}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 70" th:field="${checkedRes.checked70}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 71" th:field="${checkedRes.checked71}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 72" th:field="${checkedRes.checked72}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 73" th:field="${checkedRes.checked73}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 74" th:field="${checkedRes.checked74}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 75" th:field="${checkedRes.checked75}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 76" th:field="${checkedRes.checked76}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 77" th:field="${checkedRes.checked77}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 78" th:field="${checkedRes.checked78}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 79" th:field="${checkedRes.checked79}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 80" th:field="${checkedRes.checked80}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 81" th:field="${checkedRes.checked81}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 82" th:field="${checkedRes.checked82}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 83" th:field="${checkedRes.checked83}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 84" th:field="${checkedRes.checked84}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 85" th:field="${checkedRes.checked85}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 86" th:field="${checkedRes.checked86}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 87" th:field="${checkedRes.checked87}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 88" th:field="${checkedRes.checked88}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 89" th:field="${checkedRes.checked89}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 90" th:field="${checkedRes.checked90}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 91" th:field="${checkedRes.checked91}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 92" th:field="${checkedRes.checked92}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 93" th:field="${checkedRes.checked93}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 94" th:field="${checkedRes.checked94}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 95" th:field="${checkedRes.checked95}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 96" th:field="${checkedRes.checked96}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 97" th:field="${checkedRes.checked97}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 98" th:field="${checkedRes.checked98}"><br/>
+							<input class="mb-2" type="checkbox" th:if="${subCategoryPageSize} >= 99" th:field="${checkedRes.checked99}"><br/>
+							<input class="mb-3" type="checkbox" th:if="${subCategoryPageSize} >= 100" th:field="${checkedRes.checked100}"><br/>
+							
+						</div>
+						<div>
+							<table>
+								<tr>
+									<!-- <td th:text="index" class="border border-2 border-black bg-slate-"></td> -->
+									<td th:text="カテゴリー" class="border border-2 border-black bg-slate-"></td>
+									<td th:text="サブカテゴリー" class="border border-2 border-black"></td>
+									<td th:text="ニュースの数" class="border border-2 border-black"></td>
+								</tr>
+								<tr th:each="item,status : ${subCategoryPage}">
+									<!-- <td th:text="${status.index}" class="w-24 border border-2 border-black bg-white"></td> -->
+									<td th:text="${item.category}" class="w-24 border border-2 border-black bg-white"></td>
+									<td th:text="${item.subCategory}" class="w-36 border border-2 border-black bg-white"></td>
+									<td th:text="${item.subCategoryNewsCount}" class="w-44 border border-2 border-black bg-white"></td>
+								</tr>
+							</table>
+							
+						    <ul>
+						        <li>
+						            <a class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative"  th:href="'/sub_category_home/0'">最初のページ</a>
+						        </li>
+						        <li th:if="${subCategoryPage.hasPrevious()}">
+						            <a class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative"  th:href="'/sub_category_home/' + ${subCategoryPage.previousPageable().getPageNumber()}" th:text="前のページ"></a>
+						        </li>
+						        <li th:if="${subCategoryPage.hasNext()}">
+						            <a class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative"  th:href="'/sub_category_home/' + ${subCategoryPage.nextPageable().getPageNumber()}" th:text="次のページ"></a>
+						        </li>
+						        <li>
+						            <a class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer relative"  th:href="'/sub_category_home/' + ${subCategoryPage.getTotalPages() - 1}">最後のページ</a>
+						        </li>
+						    </ul>
+						</div>
+						
+					</div>
+							
+				</form>
+    	
+	    <footer class="py-8 bg-gray-200">
+		 	<p>著作権所有© 2023 Github-hibiki4945</p>
+		</footer>
+	</div>
+</body>
+</html>
